@@ -28,7 +28,17 @@
       (s.mode === 'bead' ? ` · <span id="boards">${bd.n} pegboard${bd.n > 1 ? 's' : ''} (29 x 29), ${bd.cols} across x ${bd.rows} down</span>` : ` · ${s.gap} mm grout`);
     window.tessera = { grid, state: s, counts: c, geom: geo, boards: bd };
   }
+  // ---------- exports ----------
+  const X = window.TesseraExport;
+  function base(){ const s = tessera.state; return ('tessera-' + (s.line1 + ' ' + s.line2).trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '-' + s.mode) || 'tessera-sign'; }
+  function sheetNow(){ return X.sheet(tessera.grid, { ...tessera.state, overlay: $('overlay').checked }); }
+  function info(){ const sh = sheetNow(), pdfp = X.PAPER[$('paper').value], aw = pdfp[0] - 20, ah = pdfp[1] - 46;
+    $('exinfo').textContent = `Sheet ${(sh.W / 25.4).toFixed(1)} x ${(sh.H / 25.4).toFixed(1)} in (${Math.round(sh.W)} x ${Math.round(sh.H)} mm). PDF: ${Math.ceil(sh.W / aw) * Math.ceil(sh.H / ah)} page(s). PNG at ${X.pngDpi(sh, +$('dpi').value)} dpi.`; }
+  $('exSvg').onclick = () => { const svg = X.toSVG(sheetNow()); window.tesseraLast = { kind: 'svg', svg }; X.download(base() + '.svg', svg, 'image/svg+xml'); };
+  $('exPng').onclick = async () => { const r = await X.toPNG(sheetNow(), +$('dpi').value); window.tesseraLast = { kind: 'png', dpi: r.dpi, w: r.w, h: r.h }; X.download(base() + '.png', r.bytes, 'image/png'); };
+  $('exPdf').onclick = () => { const r = X.toPDF(sheetNow(), $('paper').value, 'Tessera sign: ' + (tessera.state.line1 + ' ' + tessera.state.line2).trim()); window.tesseraLast = { kind: 'pdf', pages: r.pages }; X.download(base() + '.pdf', r.bytes, 'application/pdf'); };
   $('style').addEventListener('change', () => { $('border').value = ST[$('style').value].borderWidth; update(); });
   document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', update));
-  update();
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', info));
+  update(); info();
 })();
