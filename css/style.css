@@ -10,3 +10,16 @@ input[type=number] { width: 100%; }
 .hint { font-weight: 400; opacity: .7; margin: 0; font-size: .88rem; }
 .preview { background: var(--card); border-radius: 10px; padding: 16px; box-shadow: 0 1px 3px #0002; }
 .preview svg { width: 100%; height: auto; max-height: 72vh; display: block; }
+fieldset { border: 1px solid #ddd6c8; border-radius: 8px; padding: 8px 10px 10px; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+legend { font-weight: 600; font-size: .92rem; padding: 0 4px; }
+.seg { flex-direction: row; gap: 14px; flex-wrap: wrap; }
+.seg label, label.inline { flex-direction: row; align-items: center; gap: 6px; font-weight: 500; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.warn { color: #a4482a; margin: 0; font-size: .88rem; }
+.right { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.bom { background: var(--card); border-radius: 10px; padding: 12px 16px; box-shadow: 0 1px 3px #0002; }
+.bom h2 { margin: 0 0 4px; font-size: 1.1rem; }
+.bom table { border-collapse: collapse; margin-top: 8px; min-width: 260px; }
+.bom td, .bom th { padding: 3px 10px 3px 0; text-align: left; } .bom td:last-child, .bom th:last-child { text-align: right; }
+.bom tfoot td { font-weight: 700; border-top: 1px solid #ddd; }
+.sw { display: inline-block; width: 16px; height: 16px; border-radius: 3px; border: 1px solid #0003; vertical-align: middle; }

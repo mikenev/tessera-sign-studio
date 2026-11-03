@@ -14,9 +14,29 @@
     <label>Line 1 <input id="line1" value="BATHS" maxlength="15" autocomplete="off" spellcheck="false"></label>
     <label>Line 2 <span class="hint">(smaller)</span> <input id="line2" value="EST 1926" maxlength="15" autocomplete="off" spellcheck="false"></label>
     <p id="left" class="hint"></p>
-    <p id="size" class="hint"></p>
+    <label>Style <select id="style"></select></label>
+    <p id="look" class="hint"></p>
+    <label>Font (line 1) <select id="font"><option value="block">Tessera Block</option><option value="heavy">Tessera Heavy</option></select></label>
+    <fieldset class="seg"><legend>Mode</legend>
+      <label><input type="radio" name="mode" value="tile" checked> Tiles (1 in)</label>
+      <label><input type="radio" name="mode" value="bead"> Beads (5 mm)</label>
+    </fieldset>
+    <label id="gapRow">Grout gap (mm) <input id="gap" type="number" min="1" max="10" step="0.5" value="3"></label>
+    <fieldset class="size"><legend>Grid size</legend>
+      <label class="inline"><input id="auto" type="checkbox" checked> Fit to text</label>
+      <div class="two"><label>Width <input id="gw" type="number" min="5" max="200" value="40"></label><label>Height <input id="gh" type="number" min="5" max="200" value="20"></label></div>
+      <div class="two"><label>Margin <input id="margin" type="number" min="0" max="20" value="2"></label><label>Border <input id="border" type="number" min="0" max="12" value="2"></label></div>
+      <p id="fitwarn" class="warn" hidden>The text doesn't fit inside the border at this size.</p>
+    </fieldset>
   </section>
-  <section id="preview" class="preview"></section>
+  <section class="right">
+    <div id="preview" class="preview"></div>
+    <div class="bom">
+      <h2>Materials</h2>
+      <p id="size" class="hint"></p>
+      <table id="counts"><thead><tr><th></th><th>Colour</th><th>Pieces</th></tr></thead><tbody></tbody><tfoot></tfoot></table>
+    </div>
+  </section>
 </main>
 <script src="js/fonts.js"></script>
 <script src="js/palette.js"></script>

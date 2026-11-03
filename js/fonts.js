@@ -61,7 +61,9 @@
     '.': ['   ', '   ', '   ', '   ', ' # '], "'": [' # ', ' # ', '   ', '   ', '   '], '!': [' # ', ' # ', ' # ', '   ', ' # '],
   };
   function mk(name, label, glyphs, w, h){ return { name, label, w, h, glyphs, space: Math.max(2, Math.round(w * 0.6)) }; }
-  const fonts = { block: mk('block', 'Tessera Block (5x7)', B, 5, 7), mini: mk('mini', 'Tessera Mini (3x5)', M, 3, 5) };
+  // Tessera Heavy: a bold 6 x 7 cut of Block, every stroke doubled to the right
+  const H = {}; Object.keys(B).forEach(k => { H[k] = B[k].map(r => { const s = r + ' '; let o = ''; for (let x = 0; x < s.length; x++) o += (s[x] === '#' || (x > 0 && s[x - 1] === '#')) ? '#' : ' '; return o; }); });
+  const fonts = { block: mk('block', 'Tessera Block (5x7)', B, 5, 7), heavy: mk('heavy', 'Tessera Heavy (6x7)', H, 6, 7), mini: mk('mini', 'Tessera Mini (3x5)', M, 3, 5) };
   // returns a bitmap {w,h,px:[[0/1]]} for one line of text
   function rasterLine(text, font, track = 1){
     const cols = []; const chars = [...text.toUpperCase()];
