@@ -1,0 +1,11 @@
+Tessera Block, Tessera Heavy and Tessera Mini bitmap fonts
+Copyright (c) 2026 the Tessera Sign Studio authors.
+
+These pixel fonts are original drawings made for Tessera Sign Studio (js/fonts.js).
+They are dedicated to the public domain under CC0 1.0 Universal:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+To the extent possible under law, the authors have waived all copyright and related
+or neighboring rights to these fonts. You may copy, modify and use them for any
+purpose, without asking permission. They are not derived from any transit agency,
+signage system or trademarked lettering.

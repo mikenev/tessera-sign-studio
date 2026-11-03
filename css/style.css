@@ -1,0 +1,12 @@
+:root { --ink: #1d2433; --bg: #f4f1ea; --card: #fff; --accent: #2753a8; }
+* { box-sizing: border-box; }
+body { margin: 0; font: 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
+header { padding: 18px 24px 6px; } header h1 { margin: 0; font-size: 1.6rem; } header p { margin: 4px 0 0; opacity: .75; }
+main { display: grid; grid-template-columns: 320px 1fr; gap: 20px; padding: 16px 24px 32px; align-items: start; }
+.controls { background: var(--card); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 3px #0002; }
+label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: .92rem; }
+input, select { font: inherit; padding: 8px 10px; border: 1px solid #c9c4b8; border-radius: 6px; background: #fff; }
+input[type=number] { width: 100%; }
+.hint { font-weight: 400; opacity: .7; margin: 0; font-size: .88rem; }
+.preview { background: var(--card); border-radius: 10px; padding: 16px; box-shadow: 0 1px 3px #0002; }
+.preview svg { width: 100%; height: auto; max-height: 72vh; display: block; }
