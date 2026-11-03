@@ -23,3 +23,6 @@ legend { font-weight: 600; font-size: .92rem; padding: 0 4px; }
 .bom td, .bom th { padding: 3px 10px 3px 0; text-align: left; } .bom td:last-child, .bom th:last-child { text-align: right; }
 .bom tfoot td { font-weight: 700; border-top: 1px solid #ddd; }
 .sw { display: inline-block; width: 16px; height: 16px; border-radius: 3px; border: 1px solid #0003; vertical-align: middle; }
+.exrow { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin: 8px 0; }
+button { font: inherit; font-weight: 600; padding: 9px 16px; border: 0; border-radius: 7px; background: var(--accent); color: #fff; cursor: pointer; }
+button:hover { filter: brightness(1.1); }

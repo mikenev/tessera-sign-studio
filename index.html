@@ -36,6 +36,19 @@
       <p id="size" class="hint"></p>
       <table id="counts"><thead><tr><th></th><th>Colour</th><th>Pieces</th></tr></thead><tbody></tbody><tfoot></tfoot></table>
     </div>
+    <div class="bom export">
+      <h2>Export at real scale</h2>
+      <div class="exrow">
+        <label class="inline"><input id="overlay" type="checkbox" checked> Grid overlay and row/column numbers</label>
+        <label class="inline">Paper <select id="paper"><option value="letter">Letter</option><option value="a4">A4</option></select></label>
+        <label class="inline">PNG <select id="dpi"><option>100</option><option selected>150</option><option>300</option></select> dpi</label>
+      </div>
+      <div class="exrow">
+        <button id="exPdf">Printable PDF</button><button id="exSvg">SVG</button><button id="exPng">PNG</button>
+      </div>
+      <p id="exinfo" class="hint"></p>
+      <p class="hint">Every export has a 1:1 ruler (100 mm and 4 in). Print at 100% / Actual size and measure it to check the scale.</p>
+    </div>
   </section>
 </main>
 <script src="js/fonts.js"></script>
@@ -43,6 +56,7 @@
 <script src="js/styles.js"></script>
 <script src="js/grid.js"></script>
 <script src="js/render.js"></script>
+<script src="js/export.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
