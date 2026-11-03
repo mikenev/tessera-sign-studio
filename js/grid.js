@@ -9,7 +9,7 @@
     const tw = Math.max(l1.w, l2 ? l2.w : 0), th = l1.h + (l2 ? gap + l2.h : 0);
     const margin = o.margin ?? 2, bw = o.border ?? 2;
     let W = tw + 2 * (margin + bw), H = th + 2 * (margin + bw), fit = true;
-    if (o.width && o.height){ W = o.width; H = o.height; fit = tw <= W - 2 * bw && th <= H - 2 * bw; }
+    if (o.width && o.height){ W = Math.max(2 * bw + 1, o.width | 0); H = Math.max(2 * bw + 1, o.height | 0); fit = tw <= W - 2 * bw && th <= H - 2 * bw; }
     const cells = []; for (let y = 0; y < H; y++) cells.push(new Array(W).fill(st.field));
     // border band, walked clockwise so patterns run continuously around the corners
     const n = 2 * (W + H);
@@ -22,7 +22,7 @@
     const put = (bm, top, key) => { const ox = Math.floor((W - bm.w) / 2);
       for (let y = 0; y < bm.h; y++) for (let x = 0; x < bm.w; x++) if (bm.px[y][x]){ const X = ox + x, Y = top + y; if (X >= bw && Y >= bw && X < W - bw && Y < H - bw) cells[Y][X] = key; } };
     put(l1, oy, st.letter); if (l2) put(l2, oy + l1.h + gap, st.letter2 || st.letter);
-    return { w: W, h: H, cells, fit, style: o.style || 'bathhouse' };
+    return { w: W, h: H, cells, fit, style: o.style || 'bathhouse', text: { w: tw, h: th } };
   }
   function counts(grid){ const c = {}; grid.cells.forEach(r => r.forEach(k => c[k] = (c[k] || 0) + 1)); return c; }
   g.TesseraGrid = { build, counts, letterCount, MAX_LETTERS };
