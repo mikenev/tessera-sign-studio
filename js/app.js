@@ -7,7 +7,8 @@
     let a = clean($('line1').value), b = clean($('line2').value);
     while (G.letterCount(a) > G.MAX_LETTERS) a = a.slice(0, -1);
     while (G.letterCount(a) + G.letterCount(b) > G.MAX_LETTERS) b = b.slice(0, -1);
-    if ($('line1').value !== a) $('line1').value = a; if ($('line2').value !== b) $('line2').value = b;
+    // keep the caret where it was when we uppercase or drop characters
+    [['line1', a], ['line2', b]].forEach(([id, v]) => { const el = $(id); if (el.value === v) return; const p = el.selectionStart, drop = el.value.length - v.length; el.value = v; if (document.activeElement === el && p != null){ const q = Math.max(0, Math.min(v.length, p - Math.max(0, drop))); el.setSelectionRange(q, q); } });
     const mode = document.querySelector('input[name=mode]:checked').value, auto = $('auto').checked;
     return { line1: a, line2: b, style: $('style').value, font: $('font').value, mode, gap: num('gap', 1, 10),
       margin: num('margin', 0, 20) | 0, border: num('border', 0, 12) | 0, width: auto ? 0 : num('gw', 5, 200) | 0, height: auto ? 0 : num('gh', 5, 200) | 0 };
@@ -40,5 +41,11 @@
   $('style').addEventListener('change', () => { $('border').value = ST[$('style').value].borderWidth; update(); });
   document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', update));
   document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', info));
+  // remember the last design on this device
+  const KEYS = ['line1', 'line2', 'style', 'font', 'gap', 'margin', 'border', 'gw', 'gh', 'overlay', 'auto', 'paper', 'dpi'];
+  function save(){ try { const o = {}; KEYS.forEach(k => { const el = $(k); o[k] = el.type === 'checkbox' ? el.checked : el.value; }); o.mode = tessera.state.mode; localStorage.setItem('tessera-sign', JSON.stringify(o)); } catch (e) {} }
+  try { const o = JSON.parse(localStorage.getItem('tessera-sign') || 'null');
+    if (o){ KEYS.forEach(k => { if (o[k] === undefined) return; const el = $(k); if (el.type === 'checkbox') el.checked = o[k]; else el.value = o[k]; }); const m = document.querySelector(`input[name=mode][value=${o.mode}]`); if (m) m.checked = true; } } catch (e) {}
+  document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', save));
   update(); info();
 })();

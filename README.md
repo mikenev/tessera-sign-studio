@@ -16,3 +16,7 @@ Then open http://localhost:8000.
 
 The bitmap fonts in `js/fonts.js` are original drawings, released under CC0 (see `fonts/LICENSE-fonts.txt`).
 All style presets are original designs. The project uses no transit agency names, logos, route bullets or trademarked lettering.
+
+## Publishing
+
+The repo is private. GitHub Pages is not turned on. It goes public only when Mike approves it in his own words. Because the site is static, Pages can serve the repo root as it is.

@@ -26,3 +26,16 @@ legend { font-weight: 600; font-size: .92rem; padding: 0 4px; }
 .exrow { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin: 8px 0; }
 button { font: inherit; font-weight: 600; padding: 9px 16px; border: 0; border-radius: 7px; background: var(--accent); color: #fff; cursor: pointer; }
 button:hover { filter: brightness(1.1); }
+/* M4: phones and small tablets */
+@media (max-width: 860px) {
+  main { grid-template-columns: 1fr; padding: 10px 12px 24px; gap: 12px; }
+  header { padding: 12px 14px 0; } header h1 { font-size: 1.3rem; }
+  .right { display: contents; }   /* preview first, then the controls, then materials and export */
+  .preview { order: -1; } .bom { order: 1; }
+  .preview { padding: 8px; position: sticky; top: 0; z-index: 2; }
+  .preview svg { max-height: 34vh; }
+  input, select, button { font-size: 16px; min-height: 44px; }   /* 16px stops iOS zooming on focus */
+  .exrow button { flex: 1 1 30%; }
+  .bom table { width: 100%; min-width: 0; }
+}
+@media (max-width: 860px) and (orientation: landscape) { .preview svg { max-height: 55vh; } .preview { position: static; } }
